@@ -2,10 +2,10 @@ package net.paulosoft.pscatalog.resources;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,4 +21,9 @@ public ResponseEntity<List<CategoryDTO>> Mostrar() {
 List <CategoryDTO> lista=service.listarTudo();
 	return ResponseEntity.ok().body(lista);
 }
+	@GetMapping("/{id}")
+	public ResponseEntity<CategoryDTO> findById(@PathVariable Long id) {
+		CategoryDTO dto = service.findById(id);
+return ResponseEntity.ok().body(dto);
+	}
 }
