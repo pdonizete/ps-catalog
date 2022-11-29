@@ -1,4 +1,5 @@
 package net.paulosoft.pscatalog.services;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -10,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import net.paulosoft.pscatalog.dto.CategoryDTO;
 import net.paulosoft.pscatalog.entities.Category;
 import net.paulosoft.pscatalog.repositories.CategoryRepository;
+import net.paulosoft.pscatalog.services.exceptions.EntityNotFoundException;
+
 @Service
 public class CategoryService {
 	@Autowired
@@ -27,7 +30,7 @@ public List <CategoryDTO> listarTudo() {
    
     
         Optional<Category> obj = repository.findById(id);
-        Category entity=obj.get();
+        Category entity=obj.orElseThrow(()->new EntityNotFoundException("Entity not found"));
         return new CategoryDTO(entity);
 
     }
