@@ -12,7 +12,6 @@ import net.paulosoft.pscatalog.dto.CategoryDTO;
 import net.paulosoft.pscatalog.entities.Category;
 import net.paulosoft.pscatalog.repositories.CategoryRepository;
 import net.paulosoft.pscatalog.services.exceptions.EntityNotFoundException;
-
 @Service
 public class CategoryService {
 	@Autowired
@@ -41,4 +40,17 @@ public List <CategoryDTO> listarTudo() {
     entity=repository.save(entity);
     return new CategoryDTO(entity);
     }
+    @Transactional
+    public CategoryDTO update(Long id, CategoryDTO dto) {
+            try {
+                    Category entity = repository.getOne(id);
+                    entity.setName(dto.getName());
+                    entity = repository.save(entity);
+                    return new CategoryDTO(entity);
+            }
+            catch (EntityNotFoundException e) {
+                    throw new EntityNotFoundException("Id not found " + id);
+            }
+    }
+
 }
