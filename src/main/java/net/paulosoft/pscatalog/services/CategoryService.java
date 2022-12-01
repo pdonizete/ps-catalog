@@ -1,5 +1,4 @@
 package net.paulosoft.pscatalog.services;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -48,7 +47,7 @@ public List <CategoryDTO> listarTudo() {
                     entity = repository.save(entity);
                     return new CategoryDTO(entity);
             }
-            catch (EntityNotFoundException e) {
+            catch (javax.persistence.EntityNotFoundException  e) {
                     throw new EntityNotFoundException("Id not found " + id);
             }
     }
