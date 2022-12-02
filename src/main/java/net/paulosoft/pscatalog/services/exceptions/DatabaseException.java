@@ -1,4 +1,4 @@
-package com.devsuperior.dscatalog.services.exceptions;
+package net.paulosoft.pscatalog.services.exceptions;
 
 public class DatabaseException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
