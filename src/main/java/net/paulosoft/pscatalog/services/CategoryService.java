@@ -1,5 +1,5 @@
 package net.paulosoft.pscatalog.services;
-
+// serviço de categoria
 import java.util.List;
 
 import java.util.Optional;
